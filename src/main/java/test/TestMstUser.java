@@ -15,7 +15,7 @@ public class TestMstUser {
 		
 		MstUserService mstUserSvc = context.getBean(MstUserService.class);
 		
-		MstUserDto dto = mstUserSvc.findByUsernamePassword("tester", "tester");
+	//	MstUserDto dto = mstUserSvc.findByUsernamePassword("tester", "tester");
 		
 		MstUserDto user = new MstUserDto();
 		user.setCreatedDate(new Date());
@@ -24,8 +24,8 @@ public class TestMstUser {
 		user.setPassword("kaizan");
 		user.setDeleted(false);
 		mstUserSvc.save(user);
-		System.out.println("Username: " + dto.getUsername() + " Password: " + dto.getPassword());
-		for(MstUserDto dtoo : mstUserSvc.findAll()){
+//		System.out.println("Username: " + dto.getUsername() + " Password: " + dto.getPassword());
+		for(MstUserDto dto : mstUserSvc.findAll()){
 			System.out.println("Username: " + dto.getUsername() + " Password: " + dto.getPassword());
 		}
 		

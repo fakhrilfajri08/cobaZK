@@ -6,16 +6,19 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
-import org.hibernate.bytecode.buildtime.spi.ExecutionException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
+import dao.MstDepartmentDao;
 import dao.MstCustomerDao;
 import dto.MstCustomerDto;
+import dto.MstKaryawanDto;
 import entity.MstCustomer;
+import entity.MstKaryawan;
 import entity.pk.MstCustomerPk;
+import entity.pk.MstKaryawanPk;
 import service.MstCustomerService;
+
 
 @Service(value="mstCustomerSvc")
 @Transactional
@@ -24,8 +27,8 @@ public class MstCustomerServiceImpl implements MstCustomerService{
 	@Autowired
 	private MstCustomerDao mstCustomerDao;
 	
-	
-	
+	@Autowired
+private MstDepartmentDao mstDepartmentDao;
 	@Override
 	public void save(MstCustomerDto mstCustomerDto) {
 		try {
@@ -34,17 +37,20 @@ public class MstCustomerServiceImpl implements MstCustomerService{
 			mstCustomer.setCreatedUser(mstCustomerDto.getCreatedUser());
 			mstCustomer.setDateOfBirth(mstCustomerDto.getDateOfBirth());
 			mstCustomer.setDeleted(mstCustomerDto.getDeleted());
-			mstCustomer.setNamaCustomer(mstCustomerDto.getNamaCustomer());
+			mstCustomer.setDepartment(mstCustomerDto.getDepartment());
+			mstCustomer.setCustName(mstCustomerDto.getNamaCustomer());
 			mstCustomer.setUpdatedDate(mstCustomerDto.getUpdatedDate());
 			mstCustomer.setUpdatedUser(mstCustomerDto.getUpdatedUser());
 			mstCustomer.setGender(mstCustomerDto.getGender());
 			mstCustomer.setId(mstCustomerDto.getId());
 			mstCustomer.setBirthPlace(mstCustomerDto.getBirthPlace());
+		//	mstCustomer.setAddressCust(mstCustomer.getAddressCust());
 			mstCustomerDao.save(mstCustomer);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
 	}
 
 	@Override
@@ -60,13 +66,15 @@ public class MstCustomerServiceImpl implements MstCustomerService{
 					dto.setCreatedDate(customer.getCreatedDate());
 					dto.setCreatedUser(customer.getCreatedUser());
 					dto.setDateOfBirth(customer.getDateOfBirth());
-					dto.setDeleted(customer.getDeleted());			
+					dto.setDeleted(customer.getDeleted());
+					dto.setDepartment(customer.getDepartment());
 					dto.setGender(customer.getGender());
 					dto.setId(customer.getId());
-					dto.setNamaCustomer(customer.getNamaCustomer());
+					dto.setNamaCustomer(customer.getCustName());
 					dto.setUpdatedDate(customer.getUpdatedDate());
 					dto.setUpdatedUser(customer.getUpdatedUser());
 					dto.setBirthPlace(customer.getBirthPlace());
+				//dto.setAddressCust(customer.getAddressCust());
 					list.add(dto);
 				}
 			}
@@ -93,6 +101,7 @@ public class MstCustomerServiceImpl implements MstCustomerService{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
 	}
 
 	@Override
@@ -108,12 +117,14 @@ public class MstCustomerServiceImpl implements MstCustomerService{
 				dto.setCreatedUser(customer.getCreatedUser());
 				dto.setDateOfBirth(customer.getDateOfBirth());
 				dto.setDeleted(customer.getDeleted());
+				dto.setDepartment(customer.getDepartment());
 				dto.setGender(customer.getGender());
 				dto.setId(customer.getId());
-				dto.setNamaCustomer(customer.getNamaCustomer());
+				dto.setNamaCustomer(customer.getCustName());
 				dto.setUpdatedDate(customer.getUpdatedDate());
 				dto.setUpdatedUser(customer.getUpdatedUser());
 				dto.setBirthPlace(customer.getBirthPlace());
+		//	dto.setAddressCust(customer.getAddressCust());
 			}
 			return dto;
 		} catch (Exception e) {
@@ -134,14 +145,16 @@ public class MstCustomerServiceImpl implements MstCustomerService{
 				customer.setUpdatedDate(new Date());
 				customer.setUpdatedUser("ADMIN");
 				customer.setDateOfBirth(mstCustomerDto.getDateOfBirth());
+				customer.setDepartment(mstCustomerDto.getDepartment());
 				customer.setGender(mstCustomerDto.getGender());
-				customer.setNamaCustomer(mstCustomerDto.getNamaCustomer());
+				customer.setCustName(mstCustomerDto.getNamaCustomer());
 				customer.setBirthPlace(mstCustomerDto.getBirthPlace());
 				mstCustomerDao.save(customer);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
 	}
 
 }

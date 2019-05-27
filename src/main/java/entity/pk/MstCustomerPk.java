@@ -7,11 +7,13 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class MstCustomerPk implements Serializable{
 
+	
+	
+	
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 582960602268862421L;
-	
+	private static final long serialVersionUID = -6737711144305780165L;
 	private Integer id;
 
 	public Integer getId() {
@@ -21,5 +23,4 @@ public class MstCustomerPk implements Serializable{
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	
 }

@@ -1,16 +1,13 @@
 package dto;
 
-import java.time.LocalDateTime;
 import java.util.Date;
 
-
-
-
-
+import entity.MstCustomer;
+import entity.MstDepartment;
 import entity.enumcol.GenderEnum;
 
 public class MstCustomerDto {
-	
+
 	private Date createdDate;// = LocalDateTime.now();
 	private String createdUser;
 	private Date updatedDate;
@@ -20,17 +17,11 @@ public class MstCustomerDto {
 	private Integer id;
 	private String namaCustomer;
 	private Date dateOfBirth;
-	
+	private MstDepartment department;
 	private GenderEnum gender;
 	private String birthPlace;
+//	private String addressCust;
 	
-
-	public String getNamaCustomer() {
-		return namaCustomer;
-	}
-	public void setNamaCustomer(String namaCustomer) {
-		this.namaCustomer = namaCustomer;
-	}
 	public Date getCreatedDate() {
 		return createdDate;
 	}
@@ -67,14 +58,18 @@ public class MstCustomerDto {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	
+	public String getNamaCustomer() {
+		return namaCustomer;
+	}
+	public void setNamaCustomer(String namaCustomer) {
+		this.namaCustomer = namaCustomer;
+	}
 	public Date getDateOfBirth() {
 		return dateOfBirth;
 	}
 	public void setDateOfBirth(Date dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
 	}
-	
 	public GenderEnum getGender() {
 		return gender;
 	}
@@ -87,5 +82,16 @@ public class MstCustomerDto {
 	public void setBirthPlace(String birthPlace) {
 		this.birthPlace = birthPlace;
 	}
-	
+//	public String getAddressCust() {
+//		return addressCust;
+//	}
+//	public void setAddressCust(String addressCust) {
+//		this.addressCust = addressCust;
+//	}
+	public MstDepartment getDepartment() {
+		return department;
+	}
+	public void setDepartment(MstDepartment department) {
+		this.department = department;
+	}
 }
